@@ -3,8 +3,10 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { useEffect, useState } from "react";
+import { SessionProvider } from "next-auth/react";
 import Navbar from "./navbar/navbar";
 import Loading from "./Loading/page";
+import { AppProvider } from "../contexts/AppContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,8 +44,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased rounded-tr-4xl rounded-tl-4xl`}
       >
-        <Navbar />
-        {children}
+        <SessionProvider>
+          <AppProvider>
+            <Navbar />
+            {children}
+          </AppProvider>
+        </SessionProvider>
       </body>
     </html>
   );
