@@ -7,7 +7,7 @@ import { SessionProvider } from "next-auth/react";
 import Navbar from "./navbar/navbar";
 import Loading from "./Loading/page";
 import { AppProvider } from "../contexts/AppContext";
-import SmoothScroll from "@/smoothScroll";
+import SmoothScroll from "./smoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +47,6 @@ export default function RootLayout({ children }) {
       >
         <SessionProvider>
           <AppProvider>
-           
             <Navbar />
             <SmoothScroll>
             {children}
