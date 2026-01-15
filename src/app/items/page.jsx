@@ -64,7 +64,11 @@ export default function ItemsSimple() {
   }
 
   return (
-    <main className="bg-[#080808] text-white font-sans selection:bg-white selection:text-black">
+    <main style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}} className="bg-[#080808] text-white font-sans selection:bg-white selection:text-black">
       {/* Fixed Navigation */}
       <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-baseline mix-blend-difference">
         <Link href="/" className="text-xs tracking-[0.5em] hover:line-through transition-all uppercase">Home</Link>
@@ -118,7 +122,12 @@ const ProjectSection = ({ item, index }) => {
           </div>
 
           <div className="pt-10 lg:pt-0 space-y-6">
-            <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
+            <p  style={{
+    fontFamily: '"Ubuntu Sans", sans-serif',
+    fontOpticalSizing: "auto",
+    fontStyle: "normal",
+    fontVariationSettings: '"wdth" 100',
+  }} className="text-sm text-gray-400 leading-relaxed max-w-xs font-bold uppercase">
               {item.description}
             </p>
             <div className="flex flex-col gap-4">

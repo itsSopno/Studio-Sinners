@@ -36,7 +36,11 @@ const Navbar = () => {
     <>
       <header 
         ref={navRef}
-        className="fixed top-0 left-0 w-full z-[100] px-6 py-8 md:px-12 flex justify-between items-center mix-blend-difference text-white"
+        style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}} className="fixed top-0 left-0 w-full z-[100] px-6 py-8 md:px-12 flex justify-between items-center mix-blend-difference text-white"
       >
         {/* Brand Logo */}
         <Link href="/" className="group flex flex-col">

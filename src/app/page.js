@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import About from "./about-two/page";
+import Privacy from "./privacy/page";
 
 export default function Home() {
   const fadeInUp = {
@@ -18,7 +20,11 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
+    <div style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}} className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
       
       {/* Header Overlay */}
       <nav className="fixed top-0 w-full p-8 z-50 flex justify-between items-center mix-blend-difference">
@@ -51,7 +57,12 @@ export default function Home() {
             Legacies
           </h1>
           <div className="flex flex-col md:flex-row gap-10 items-start">
-            <p className="text-sm text-gray-400 max-w-sm leading-relaxed tracking-wide">
+            <p style={{
+    fontFamily: '"Ubuntu Sans", sans-serif',
+    fontOpticalSizing: "auto",
+    fontStyle: "normal",
+    fontVariationSettings: '"wdth" 100',
+  }} className="text-sm text-gray-400 max-w-sm leading-relaxed tracking-wide  font-bold uppercase">
               We engineer high-performance web experiences that bridge the gap between human emotion and digital precision.
             </p>
             <Link href="/items" className="group flex items-center gap-4 text-xs tracking-[0.4em] uppercase">
@@ -70,7 +81,12 @@ export default function Home() {
           </motion.div>
           <motion.div {...fadeInUp} className="md:col-span-8">
             <h3 className="text-3xl md:text-5xl font-light leading-tight uppercase tracking-tighter">
-              We don't just build websites. We architect <span className="text-gray-500">scalable ecosystems</span> that empower brands to dominate their digital landscape.
+              We don't just build websites. We architect <span style={{
+    fontFamily: '"Ubuntu Sans", sans-serif',
+    fontOpticalSizing: "auto",
+    fontStyle: "normal",
+    fontVariationSettings: '"wdth" 100',
+  }} className="text-gray-500 font-bold uppercase">scalable ecosystems</span> that empower brands to dominate their digital landscape.
             </h3>
           </motion.div>
         </div>
@@ -106,8 +122,13 @@ export default function Home() {
           ))}
         </motion.div>
       </section>
-
+<section>
+  <About></About>
+</section>
       {/* Stats: The Proof */}
+      <section>
+        <Privacy></Privacy>
+      </section>
       <section className="py-32 px-6 md:px-20 bg-[#080808]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {[

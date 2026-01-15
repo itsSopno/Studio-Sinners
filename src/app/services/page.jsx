@@ -39,7 +39,11 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
+    <div style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}} className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
       
       {/* Hero Section */}
       <section className="relative pt-44 pb-24 px-6 md:px-20 border-b border-white/5 overflow-hidden">

@@ -12,7 +12,11 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
+    <div style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}} className="font min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black">
       
       {/* Hero Section: Large Typography */}
       <section className="relative h-[80vh] flex flex-col justify-center px-6 md:px-20 overflow-hidden border-b border-white/5">
@@ -20,8 +24,15 @@ export default function About() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
-          className="relative z-10"
+          className="relative z-10"     
+          style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}}
         >
+       
+         
           <span className="text-[10px] tracking-[0.8em] text-gray-500 uppercase mb-6 block">
             Who_We_Are
           </span>
@@ -41,9 +52,19 @@ export default function About() {
           </motion.div>
           <motion.div {...fadeInUp} className="md:col-span-8">
             <h3 className="text-3xl md:text-6xl font-light leading-tight tracking-tighter uppercase mb-12">
-              Born in 2020, Studio Siners was built on a single premise: <span className="text-gray-400 italic">Complexity needs clarity.</span>
+              Born in 2020, Studio Siners was built on a single premise: <span style={{
+    fontFamily: '"Ubuntu Sans", sans-serif',
+    fontOpticalSizing: "auto",
+    fontStyle: "normal",
+    fontVariationSettings: '"wdth" 100',
+  }} className="text-gray-400 italic font-bold uppercase">Complexity needs clarity.</span>
             </h3>
-            <div className="grid md:grid-cols-2 gap-12 text-sm leading-relaxed tracking-wide text-gray-600">
+            <div style={{
+    fontFamily: '"Ubuntu Sans", sans-serif',
+    fontOpticalSizing: "auto",
+    fontStyle: "normal",
+    fontVariationSettings: '"wdth" 100',
+  }} className="grid md:grid-cols-2 gap-12 text-sm leading-relaxed tracking-wide text-gray-600 font-bold uppercase">
               <p>
                 We started as a group of engineers and designers who were tired of "good enough." We wanted to build digital tools that felt like art but performed like high-precision machinery.
               </p>
