@@ -5,6 +5,7 @@ import Link from "next/link";
 import About from "./about-two/page";
 import Privacy from "./privacy/page";
 import StudioSection from "./studio/page";
+import ServicesLight from "./Services2/page";
 
 export default function Home() {
   const fadeInUp = {
@@ -125,6 +126,9 @@ export default function Home() {
       </section>
 <section>
   <About></About>
+</section>
+<section>
+  <ServicesLight></ServicesLight>
 </section>
 <section>
   <StudioSection></StudioSection>
