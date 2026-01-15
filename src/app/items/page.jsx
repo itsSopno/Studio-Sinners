@@ -174,7 +174,7 @@ const ProjectSection = ({ item, index }) => {
               {item.description}
             </p>
             <div className="flex items-baseline gap-8">
-               <div className="text-4xl font-mono tracking-tighter text-white border-b border-blue-600/50 pb-2">${item.price}</div>
+             
                <Link href={`/items/${item.id}`} className="group flex items-center gap-3 text-[10px] tracking-[0.4em] uppercase">
                  <span className="underline underline-offset-8 decoration-white/10 group-hover:decoration-blue-500 transition-all">Expand_Specs</span>
                  <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>

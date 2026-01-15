@@ -172,7 +172,6 @@ export default function ItemDetails() {
                 {item.name}
               </h1>
               <div className="text-5xl font-mono tracking-tighter text-blue-500 py-6 border-y border-white/5">
-                ${item.price}
               </div>
               <p 
                 style={{ fontFamily: '"Ubuntu Sans", sans-serif', fontWeight: "400" }}
