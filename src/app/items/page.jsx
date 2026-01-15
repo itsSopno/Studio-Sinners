@@ -8,84 +8,131 @@ import Image from "next/image";
 export default function ItemsSimple() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const mockItems = [
+    {
+      id: 1,
+      name: "DOG STUDIO CLONE",
+      description: "A high-end creative portfolio clone featuring advanced 3D web technologies. It showcases an interactive 3D animal model with custom Matcap shaders that transition smoothly based on user interaction.",
+      price: "299.99",
+      image: "https://i.postimg.cc/wjqNjskP/react-dog-1-14-2026-12-08-17-PM.png",
+      category: "Creative_Tech",
+      year: "2026",
+      tech: ["React", "Three.js", "GLSL"],
+      approach: "Utilizing custom Matcap shaders and R3F for seamless 3D performance."
+    },
+    {
+      id: 2,
+      name: "B2B-Asset Verse",
+      description: "AssetVerse is a B2B web application that helps organizations efficiently manage physical assets. It enables companies to track assignments, reducing loss and improving transparency.",
+      price: "449.99",
+      image: "https://i.postimg.cc/zG40bjPn/ASSET-VERSE-Mozilla-Firefox-12-27-2025-9-27-24-PM.png",
+      category: "B2B_SaaS",
+      year: "2025",
+      tech: ["Next.js", "PostgreSQL", "Tailwind"],
+      approach: "Architecting a multi-tenant database structure for enterprise scalability."
+    },
+    {
+      id: 3,
+      name: "Creative Studio",
+      description: "A visually bold and experimental creative studio portfolio focused on high-impact layouts, kinetic typography, and modern digital aesthetics.",
+      price: "399.99",
+      image: "https://i.postimg.cc/76tChBKv/(70-Reacting-to-21-Design-Portfolios-in-22-Minutes-You-Tube-Mozilla-Firefox-1-11-2026-4-00-31-PM.png",
+      category: "Digital_Design",
+      year: "2026",
+      tech: ["Framer Motion", "React", "GSAP"],
+      approach: "Experimental typography and interaction-led layout transitions."
+    }
+  ];
 
   useEffect(() => {
-    const mockItems = [
-      {
-        id: 1,
-        name: "DOG STUDIO CLONE",
-        description: "A high-end creative portfolio clone featuring advanced 3D web technologies. It showcases an interactive 3D animal model with custom Matcap shaders that transition smoothly based on user interaction.",
-        price: "299.99",
-        image: "https://i.postimg.cc/wjqNjskP/react-dog-1-14-2026-12-08-17-PM.png",
-        category: "Creative_Tech",
-        year: "2026",
-        tech: ["React", "Three.js", "GLSL"],
-        approach: "Utilizing custom Matcap shaders and R3F for seamless 3D performance."
-      },
-      {
-        id: 2,
-        name: "B2B-Asset Verse",
-        description: "AssetVerse is a B2B web application that helps organizations efficiently manage physical assets. It enables companies to track assignments, reducing loss and improving transparency.",
-        price: "449.99",
-        image: "https://i.postimg.cc/zG40bjPn/ASSET-VERSE-Mozilla-Firefox-12-27-2025-9-27-24-PM.png",
-        category: "B2B_SaaS",
-        year: "2025",
-        tech: ["Next.js", "PostgreSQL", "Tailwind"],
-        approach: "Architecting a multi-tenant database structure for enterprise scalability."
-      },
-      {
-        id: 3,
-        name: "Creative Studio",
-        description: "A visually bold and experimental creative studio portfolio focused on high-impact layouts, kinetic typography, and modern digital aesthetics.",
-        price: "399.99",
-        image: "https://i.postimg.cc/76tChBKv/(70-Reacting-to-21-Design-Portfolios-in-22-Minutes-You-Tube-Mozilla-Firefox-1-11-2026-4-00-31-PM.png",
-        category: "Digital_Design",
-        year: "2026",
-        tech: ["Framer Motion", "React", "GSAP"],
-        approach: "Experimental typography and interaction-led layout transitions."
+    const fetchItems = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch("https://server-1-1-6g3a.onrender.com/items");
+        if (!response.ok) throw new Error("NETWORK_RESPONSE_FAILURE");
+        const data = await response.json();
+        
+        // Normalize the data - ensure each item has an 'id' field
+        const normalizedData = data.map(item => ({
+          ...item,
+          id: item.id || item._id // Use _id if id doesn't exist
+        }));
+        
+        setItems(normalizedData);
+      } catch (err) {
+        console.error("Fetch Error:", err);
+        // Use mock data as fallback
+        setItems(mockItems);
+      } finally {
+        setLoading(false);
       }
-    ];
+    };
 
-    setTimeout(() => {
-      setItems(mockItems);
-      setLoading(false);
-    }, 1000);
+    fetchItems();
   }, []);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-[#080808] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-t-2 border-white animate-spin rounded-full mx-auto mb-4"></div>
-          <p className="text-white text-[10px] tracking-[0.5em] uppercase">Initializing_System</p>
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            className="w-12 h-12 border-t border-blue-600 rounded-full mx-auto mb-6"
+          ></motion.div>
+          <p className="text-white text-[10px] tracking-[0.6em] uppercase animate-pulse">Initializing_Sync_Protocol</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-[#080808] flex items-center justify-center text-white">
+        <div className="text-center border border-red-900/30 p-12 bg-red-900/5">
+          <h2 className="text-4xl font-bold tracking-tighter text-red-600 mb-4 uppercase">System_Error</h2>
+          <p className="text-xs tracking-widest text-gray-500 mb-8 uppercase">{error}</p>
+          <button onClick={() => window.location.reload()} className="text-[10px] underline tracking-[0.5em] uppercase">Re-attempt_Sync</button>
         </div>
       </div>
     );
   }
 
   return (
-    <main style={{ 
-  fontFamily: "'Pirata One', system-ui", 
-  fontWeight: "400", 
-  fontStyle: "normal" 
-}} className="bg-[#080808] text-white font-sans selection:bg-white selection:text-black">
+    <main style={{ fontFamily: "'Pirata One', system-ui", fontWeight: "400", fontStyle: "normal" }} 
+          className="bg-[#080808] text-white selection:bg-white selection:text-black overflow-x-hidden">
+      
       {/* Fixed Navigation */}
-      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-baseline mix-blend-difference">
-        <Link href="/" className="text-xs tracking-[0.5em] hover:line-through transition-all uppercase">Home</Link>
-        <div className="text-[9px] tracking-[0.3em] opacity-50 uppercase">Scroll to Explore</div>
+      <nav className="fixed top-0 left-0 w-full p-8 z-50 flex justify-between items-baseline mix-blend-difference pointer-events-none">
+        <Link href="/" className="text-[10px] tracking-[0.5em] hover:line-through transition-all uppercase pointer-events-auto">Home_Root</Link>
+        <div className="text-[8px] tracking-[0.4em] opacity-40 uppercase">Active_Node: Catalog_MXXVI</div>
       </nav>
 
       {/* Projects List */}
-      {items.map((item, index) => (
-        <ProjectSection key={item.id} item={item} index={index} />
-      ))}
+      <div className="relative">
+        {items.map((item, index) => (
+          <ProjectSection key={item.id || index} item={item} index={index} />
+        ))}
+      </div>
 
       {/* Footer Section */}
-      <footer className="h-[50vh] flex flex-col items-center justify-center border-t border-white/5">
-        <h2 className="text-[15vw] font-bold opacity-5 select-none tracking-tighter">FINISH</h2>
-        <Link href="/" className="text-xs tracking-[1em] mt-[-2vw] hover:text-gray-400 transition-colors uppercase">
-          Back to Start
-        </Link>
+      <footer className="h-[60vh] flex flex-col items-center justify-center border-t border-white/5 relative overflow-hidden">
+        <motion.h2 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.03 }}
+          className="text-[25vw] font-bold select-none tracking-tighter absolute"
+        >
+          END_SYS
+        </motion.h2>
+        <div className="relative z-10 text-center">
+          <p className="text-[10px] tracking-[1em] text-gray-600 mb-8 uppercase">End of Directory</p>
+          <Link href="/" className="group flex items-center gap-6">
+            <span className="w-12 h-[1px] bg-white/20 group-hover:w-24 transition-all duration-500"></span>
+            <span className="text-xs tracking-[1em] group-hover:text-blue-500 transition-colors uppercase italic">Return_to_Nexus</span>
+          </Link>
+        </div>
       </footer>
     </main>
   );
@@ -93,104 +140,95 @@ export default function ItemsSimple() {
 
 const ProjectSection = ({ item, index }) => {
   return (
-    <section className="relative min-h-screen w-full flex flex-col justify-center items-center py-32 px-6 md:px-20 border-b border-white/5 overflow-hidden">
+    <section className="relative min-h-screen w-full flex flex-col justify-center items-center py-40 px-6 md:px-20 border-b border-white/5 overflow-hidden">
       
-      {/* Background Floating Number */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.03] select-none">
-        <span className="text-[40vw] leading-none font-bold">0{index + 1}</span>
+      {/* Background Floating Index */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none opacity-[0.02] select-none">
+        <span className="text-[50vw] leading-none font-bold italic">0{index + 1}</span>
       </div>
 
-      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 relative z-10">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 relative z-10 items-center">
         
-        {/* Left: Branding & Meta */}
+        {/* Left Content */}
         <motion.div 
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="lg:col-span-4 flex flex-col justify-between"
+          className="lg:col-span-5 flex flex-col"
         >
-          <div className="space-y-6">
-            <span className="text-[10px] tracking-[0.5em] text-gray-500 uppercase">Product / 0{index + 1}</span>
-            <h2 className="text-5xl md:text-7xl font-normal leading-[0.9] uppercase tracking-tighter">
+          <div className="mb-12">
+            <span className="text-[10px] tracking-[0.8em] text-blue-600 uppercase mb-6 block font-bold italic">ENTRY_NODE_0{index + 1}</span>
+            <h2 className="text-6xl md:text-8xl font-normal leading-[0.85] uppercase tracking-tighter mb-8">
               {item.name}
             </h2>
-            <div className="flex gap-4">
-              <span className="px-3 py-1 border border-white/20 text-[9px] rounded-full uppercase italic">{item.year}</span>
-              <span className="px-3 py-1 border border-white/20 text-[9px] rounded-full uppercase">{item.category}</span>
+            <div className="flex flex-wrap gap-3">
+              <span className="px-4 py-1.5 bg-white/5 border border-white/10 text-[9px] uppercase tracking-widest">{item.year || "2026"}</span>
+              <span className="px-4 py-1.5 bg-white/5 border border-white/10 text-[9px] uppercase tracking-widest text-blue-400">{item.category}</span>
             </div>
           </div>
 
-          <div className="pt-10 lg:pt-0 space-y-6">
-            <p  style={{
-    fontFamily: '"Ubuntu Sans", sans-serif',
-    fontOpticalSizing: "auto",
-    fontStyle: "normal",
-    fontVariationSettings: '"wdth" 100',
-  }} className="text-sm text-gray-400 leading-relaxed max-w-xs font-bold uppercase">
+          <div className="space-y-10">
+            <p style={{ fontFamily: '"Ubuntu Sans", sans-serif', fontWeight: "300" }} 
+               className="text-lg text-gray-400 leading-relaxed max-w-sm uppercase italic opacity-80">
               {item.description}
             </p>
-            <div className="flex flex-col gap-4">
-               <div className="text-2xl font-light tracking-widest">${item.price}</div>
-               <Link href={`/items/${item.id}`} className="text-[10px] tracking-[0.4em] underline decoration-white/20 hover:decoration-white transition-all uppercase">
-                 View_Details_System
+            <div className="flex items-baseline gap-8">
+               <div className="text-4xl font-mono tracking-tighter text-white border-b border-blue-600/50 pb-2">${item.price}</div>
+               <Link href={`/items/${item.id}`} className="group flex items-center gap-3 text-[10px] tracking-[0.4em] uppercase">
+                 <span className="underline underline-offset-8 decoration-white/10 group-hover:decoration-blue-500 transition-all">Expand_Specs</span>
+                 <span className="opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all">→</span>
                </Link>
             </div>
           </div>
         </motion.div>
 
-        {/* Right: Image Section */}
+        {/* Right Asset View */}
         <motion.div 
-          initial={{ clipPath: "inset(0 100% 0 0)" }}
-          whileInView={{ clipPath: "inset(0 0% 0 0)" }}
-          transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1] }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="lg:col-span-8 group relative"
+          className="lg:col-span-7 group relative"
         >
-          <div className="overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700 ease-in-out shadow-2xl bg-white/5 aspect-video">
+          <Link href={`/items/${item.id}`} className="block overflow-hidden relative shadow-[0_0_100px_rgba(0,0,0,1)] bg-[#111] aspect-[16/10] cursor-pointer">
              <motion.div
-               whileHover={{ scale: 1.05 }}
-               transition={{ duration: 1 }}
+               whileHover={{ scale: 1.02 }}
+               transition={{ duration: 1.5 }}
                className="w-full h-full relative"
              >
                <Image 
                  src={item.image} 
                  alt={item.name} 
                  fill
-                 className="object-cover"
+                 className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                />
              </motion.div>
              
-             {/* Hover Overlay */}
-             <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                <p className="text-[10px] tracking-[1em] translate-y-4 group-hover:translate-y-0 transition-transform font-bold uppercase">Discover details</p>
+             {/* Tech Overlay */}
+             <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent flex gap-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                {item.tech?.map((t, i) => (
+                  <span key={i} className="text-[8px] uppercase tracking-[0.3em] font-mono text-blue-400">{t}</span>
+                ))}
              </div>
-          </div>
-          
-          {/* Tech Stack below image */}
-          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 opacity-30">
-            {item.tech?.map((t, i) => (
-              <span key={i} className="text-[9px] uppercase tracking-widest">{t}</span>
-            ))}
-          </div>
+          </Link>
         </motion.div>
       </div>
 
-      {/* Bottom Technical Approach */}
+      {/* Technical Footnote */}
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="w-full mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-start gap-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        className="w-full max-w-6xl mt-24 pt-12 border-t border-white/5 grid md:grid-cols-2 gap-12"
       >
-        <div className="max-w-xl">
-          <h4 className="text-[9px] tracking-[0.5em] text-gray-600 mb-4 uppercase italic">Technical_Approach</h4>
-          <p className="text-xl md:text-3xl font-light leading-[1.2] text-gray-200 uppercase tracking-tighter">
-            {item.approach}
+        <div>
+          <h4 className="text-[9px] tracking-[0.4em] text-gray-700 mb-6 uppercase italic font-bold">Engineering_Insight</h4>
+          <p style={{ fontFamily: '"Ubuntu Sans", sans-serif' }} className="text-2xl font-light text-gray-400 tracking-tighter uppercase leading-tight">
+            {item.approach || "Optimized architecture for next-generation digital delivery."}
           </p>
         </div>
-        <div className="hidden md:block text-[8px] text-gray-800 tracking-[0.5em] [writing-mode:vertical-lr] rotate-180">
-          ESTD. 2026 // SYSTEM_DESIGN
+        <div className="flex flex-col justify-end items-end opacity-20">
+           <span className="text-[8px] tracking-[1em] uppercase font-mono italic">Studio_Siners_Engine_V4</span>
         </div>
       </motion.div>
     </section>

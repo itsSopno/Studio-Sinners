@@ -38,14 +38,14 @@ export default function Contact() {
   };
 
   return (
-    <div style={{ 
+    <div  className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
+      
+      {/* Hero Header */}
+      <section style={{ 
   fontFamily: "'Pirata One', system-ui", 
   fontWeight: "400", 
   fontStyle: "normal" 
-}} className="min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans">
-      
-      {/* Hero Header */}
-      <section className="relative pt-44 pb-20 px-6 md:px-20 border-b border-white/5">
+}}className="relative pt-44 pb-20 px-6 md:px-20 border-b border-white/5">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
           <span className="text-[10px] tracking-[0.8em] text-gray-500 uppercase mb-6 block italic">
             Connection_Initialization
@@ -145,10 +145,15 @@ export default function Contact() {
           <motion.div {...fadeInUp} className="space-y-20">
             <div>
               <h3 className="text-[10px] tracking-[0.5em] text-gray-600 uppercase mb-8 italic underline underline-offset-8">Access_Points</h3>
-              <div className="space-y-12">
+              <div style={{
+    fontFamily: '"Ubuntu Sans", sans-serif',
+    fontOpticalSizing: "auto",
+    fontStyle: "normal",
+    fontVariationSettings: '"wdth" 100',
+  }} className="space-y-12">
                 {[
                   { label: "Email", info: "hello@studio-siners.com" },
-                  { label: "Direct_Line", info: "+880 1XXX XXXXXX" },
+                  { label: "Direct_Line", info: "+880 1779616662" },
                   { label: "Location", info: "Dhaka Node, Bangladesh" }
                 ].map((item, i) => (
                   <div key={i} className="group cursor-pointer">
@@ -178,10 +183,10 @@ export default function Contact() {
       </div>
 
       {/* Footer Info */}
-      <footer className="py-10 px-6 md:px-20 flex justify-between items-center opacity-20 text-[8px] tracking-[0.5em] uppercase border-t border-white/5 bg-white text-black">
+      {/* <footer className="py-10 px-6 md:px-20 flex justify-between items-center opacity-20 text-[8px] tracking-[0.5em] uppercase border-t border-white/5 bg-white text-black">
         <span>ESTD // 2026</span>
         <span>Studio_Siners // Contact_Gateway</span>
-      </footer>
+      </footer> */}
     </div>
   );
 }
