@@ -3,7 +3,10 @@
 A high-end, brutalist-inspired e-commerce and agency ecosystem built with **Next.js 16**. Studio Siners represents a shift towards technical authority and minimalist luxury in the digital space.
 
 ---
+## 🖥️ Dashboard Preview
 
+![Dashboard Screenshot](sinners/sinners.png)
+ 
 ## 🏗️ The Vision
 Studio Siners is not just an e-commerce project; it's a visual identity system. Built for performance and designed with a "Terminal-Luxury" aesthetic, it features high-contrast layouts, precision typography, and synchronized motion systems.
 
