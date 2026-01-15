@@ -194,11 +194,19 @@ export default function Loading() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black font-sans overflow-hidden">
+    <div style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}}className="flex flex-col items-center justify-center min-h-screen bg-[#080808] text-white selection:bg-white selection:text-black  overflow-hidden">
       
       {/* Background Watermark */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
-        <h1 className="text-[25vw] font-bold tracking-tighter uppercase">Siners</h1>
+        <h1 style={{ 
+  fontFamily: "'Pirata One', system-ui", 
+  fontWeight: "400", 
+  fontStyle: "normal" 
+}} className="text-[25vw] font-bold tracking-tighter uppercase">Siners</h1>
       </div>
 
       <div className="w-full max-w-[500px] px-10 relative z-10">

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import About from "./about-two/page";
 import Privacy from "./privacy/page";
+import StudioSection from "./studio/page";
 
 export default function Home() {
   const fadeInUp = {
@@ -124,6 +125,9 @@ export default function Home() {
       </section>
 <section>
   <About></About>
+</section>
+<section>
+  <StudioSection></StudioSection>
 </section>
       {/* Stats: The Proof */}
       <section>
