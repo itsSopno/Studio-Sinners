@@ -1,21 +1,19 @@
 "use client";
 
-import { ReactLenis } from "lenis/react";
+import { ReactLenis } from 'lenis/react';
 
 export default function SmoothScroll({ children }) {
-  const lenisOptions = {
-    lerp: 0.1,          
-    duration: 1.2,     
-    smoothWheel: true,  
-    syncTouch: true,    
-    touchInertiaMultiplier: 35,
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothTouch: true,  
+  const options = {
+    duration: 1.5,
+    lerp: 0.1,
+    smoothWheel: true,
+    // মোবাইলের জন্য প্রিমিয়াম স্মুথনেস
+    touchMultiplier: 2,
+    infinite: false,
   };
 
   return (
-    <ReactLenis root options={lenisOptions}>
+    <ReactLenis root options={options}>
       {children}
     </ReactLenis>
   );

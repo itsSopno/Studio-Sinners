@@ -46,11 +46,14 @@ html.lenis body {
   scroll-behavior: auto !important;
 }
 
-
-html {
-  overflow-y: scroll;
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
-body {
-  overscroll-behavior-y: none; 
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }

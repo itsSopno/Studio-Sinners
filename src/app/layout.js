@@ -47,10 +47,11 @@ export default function RootLayout({ children }) {
       >
         <SessionProvider>
           <AppProvider>
-            <SmoothScroll>
+           
             <Navbar />
+            <SmoothScroll>
             {children}
-            </SmoothScroll>
+          </SmoothScroll>
           </AppProvider>
         </SessionProvider>
       </body>
