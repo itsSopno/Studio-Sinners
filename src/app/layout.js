@@ -46,16 +46,17 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased rounded-tr-4xl rounded-tl-4xl`}
       >
         <SessionProvider>
+            <SpeedInsights>
           <AppProvider>
             <Navbar />
          
             <SmoothScroll>
-              <SpeedInsights>
             {children}
-            </SpeedInsights>
+         
           </SmoothScroll>
         
           </AppProvider>
+          </SpeedInsights>
         </SessionProvider>
       </body>
         <footer className="py-10 px-6 md:px-20 flex justify-between items-center opacity-20 text-[8px] tracking-[0.5em] uppercase border-t border-white/5 bg-black text-white">
