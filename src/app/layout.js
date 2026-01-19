@@ -8,7 +8,7 @@ import Navbar from "./navbar/navbar";
 import Loading from "./Loading/page";
 import { AppProvider } from "../contexts/AppContext";
 import SmoothScroll from "./smoothScroll";
-
+import { injectSpeedInsights } from "@vercel/speed-insights/*";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,9 +48,11 @@ export default function RootLayout({ children }) {
         <SessionProvider>
           <AppProvider>
             <Navbar />
+            <injectSpeedInsights>
             <SmoothScroll>
             {children}
           </SmoothScroll>
+          </injectSpeedInsights>
           </AppProvider>
         </SessionProvider>
       </body>
