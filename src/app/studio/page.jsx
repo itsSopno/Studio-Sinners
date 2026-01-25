@@ -80,7 +80,7 @@ export default function StudioSection() {
               className="text-lg md:text-xl text-gray-400 leading-relaxed uppercase italic"
             >
               Studio Siners is a specialized digital forge where code meets craft. 
-              We don't just build websites; we architect digital environments that breathe 
+              We don&apos;t just build websites; we architect digital environments that breathe 
               with smooth transitions and crystalline performance.
             </motion.p>
 
